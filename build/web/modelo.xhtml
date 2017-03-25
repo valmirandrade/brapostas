@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version='1.0' encoding='UTF-8' ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -50,3 +51,57 @@
     </h:body>
 
 </html>
+=======
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+        <div id="top">
+            <ui:insert name="top">Top</ui:insert>
+        </div>
+        
+        <p:layout style="min-width:800px;min-height:600px;">
+    <p:layoutUnit position="west" resizable="true" size="200" minSize="20" maxSize="400">
+        <div id="left">
+                <ui:insert name="left">
+                    <p:menu>
+                    <p:submenu label="Opções">
+                        <p:menuitem value="Home" url="" />
+                        <p:menuitem value="Jogos" url="" />
+                        <p:menuitem value="Usuarios" url="" />
+                        <p:menuitem value="menuvazio" url="" />
+
+                    </p:submenu>
+
+                </p:menu>
+                </ui:insert>
+            </div>
+    </p:layoutUnit>
+ 
+    <p:layoutUnit position="center">
+            <ui:insert name="conteudo">
+                    conteudo
+                </ui:insert>
+    </p:layoutUnit>
+      </p:layout>
+
+        <div id="bottom">
+            <ui:insert name="bottom">Bottom</ui:insert>
+        </div>
+
+    </h:body>
+
+</html>
+>>>>>>> master
