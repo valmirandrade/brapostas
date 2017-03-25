@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/BRapostas">
+
+<Manager pathname="" />
+<Resource
+auth="Container"
+name="jdbc/brbanco"
+driverClassName="org.postgresql.Driver"
+initialSize="3"
+maxActive="5"
+maxIdle="2"
+maxWait="60000"
+type="javax.sql.DataSource"
+url="jdbc:postgresql://localhost:5432/brapostas"
+username="postgres"
+password="1245"
+defaultAutoCommit="false"
+removeAbandoned="true"
+removeAbandonedTimeout="60"
+logAbandoned="true"
+closeMethod="close"
+/>
+</Context>
