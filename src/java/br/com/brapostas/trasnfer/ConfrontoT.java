@@ -15,28 +15,10 @@ import java.util.List;
 public class ConfrontoT {
     int cod_confronto, time_casa, time_fora,gol_casa, gol_fora, cod_camp;
     boolean valido,fim;
-    String nome_time_casa, nome_time_fora;
     Date inicio;
     List<CotacaoT> cotacoes;
-    
+    String nm_time_casa, nm_time_fora;
     double valor;
-
-    public String getNome_time_casa() {
-        return nome_time_casa;
-    }
-
-    public void setNome_time_casa(String nome_time_casa) {
-        this.nome_time_casa = nome_time_casa;
-    }
-
-    public String getNome_time_fora() {
-        return nome_time_fora;
-    }
-
-    public void setNome_time_fora(String nome_time_fora) {
-        this.nome_time_fora = nome_time_fora;
-    }
-    
 
     public double getValor() {
         return valor;
@@ -44,6 +26,22 @@ public class ConfrontoT {
 
     public void setValor(double valor) {
         this.valor = valor;
+    }
+
+    public String getNm_time_casa() {
+        return nm_time_casa;
+    }
+
+    public void setNm_time_casa(String nm_time_casa) {
+        this.nm_time_casa = nm_time_casa;
+    }
+
+    public String getNm_time_fora() {
+        return nm_time_fora;
+    }
+
+    public void setNm_time_fora(String nm_time_fora) {
+        this.nm_time_fora = nm_time_fora;
     }
 
     

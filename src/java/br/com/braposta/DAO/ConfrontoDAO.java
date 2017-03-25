@@ -8,6 +8,7 @@ package br.com.braposta.DAO;
 
 import br.com.brapostas.trasnfer.ConfrontoT;
 import br.com.brapostas.trasnfer.CotacaoT;
+import br.com.brapostas.trasnfer.TipoCotacaoT;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -84,8 +85,8 @@ public class ConfrontoDAO {
             confrontoT.setValido(rs.getBoolean("valido"));
             confrontoT.setFim(rs.getBoolean("fim"));
             confrontoT.setInicio(rs.getDate("data_inicio"));
-            confrontoT.setNome_time_casa(rs.getString("nome_time_casa"));
-            confrontoT.setNome_time_fora(rs.getString("nome_time_fora"));
+            confrontoT.setNm_time_casa(getNomeTime(rs.getInt("cod_time_casa")));
+            confrontoT.setNm_time_fora(getNomeTime(rs.getInt("cod_time_fora")));
             cotacoes = getAllCotacoes(rs.getInt("cod_confronto"));
             confrontoT.setCotacoes(cotacoes);
             list.add(confrontoT);
@@ -94,8 +95,8 @@ public class ConfrontoDAO {
     }
 
     public List<ConfrontoT> getAll() throws Exception {
-        String sql = "select * from vw_confronto";
-        ResultSet rs =null;
+        String sql = "select * from confrontos";
+        ResultSet rs = null;
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -122,14 +123,13 @@ public class ConfrontoDAO {
             cotacaoT.setId_confronto(rs.getInt("cod_confronto_fk"));
             cotacaoT.setId_tipoCot(rs.getInt("id_tipo_cota_fk"));
             cotacaoT.setValor(rs.getDouble("valor"));
-            cotacaoT.setNome(rs.getString("nome"));
             list.add(cotacaoT);
         }
         return list;
     }
 
     public List<CotacaoT> getAllCotacoes(int cod_confronto) throws Exception {
-        String sql = "select * from vw_cotas where cod_confronto_fk=?";
+        String sql = "select * from cotacao where cod_confronto_fk=?";
         ResultSet rs = null;
         PreparedStatement ps = null;
         try {
@@ -152,9 +152,64 @@ public class ConfrontoDAO {
             }
         }
     }
-   
     
-    /*
+    private TipoCotacaoT getTipoCotacao(int codTipo) throws Exception{
+        TipoCotacaoT tipoCotacaoT = new TipoCotacaoT();
+        String sql = "select * from tipo_cotacoes where id_tipo_cota=?";
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, codTipo);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                tipoCotacaoT.setId_tipoCot(rs.getInt("id_tipo_cota"));
+                tipoCotacaoT.setNome(rs.getString("nome"));
+                tipoCotacaoT.setDescricao(rs.getString("descricao"));
+            }
+            return tipoCotacaoT;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+            }
+            try {
+                ps.close();
+            } catch (Exception e) {
+            }
+        }
+
+    }
+    
+    private String getNomeTime(int codTime) throws Exception{
+        String nome = "";
+        String sql = "select * from times where cod_time=?";
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, codTime);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                nome = rs.getString("nome");
+            }
+            return nome;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            try {
+                rs.close();
+            } catch (Exception e) {
+            }
+            try {
+                ps.close();
+            } catch (Exception e) {
+            }
+        }
+
+    }
 
     public double pegarCotacaoString(String cotacao, int cod) throws Exception{
         double cot = 0;
@@ -210,5 +265,5 @@ public class ConfrontoDAO {
             }
         }
     }
-*/
+
 }
